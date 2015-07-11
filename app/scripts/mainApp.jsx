@@ -1,11 +1,11 @@
 import React from 'react';
-import MainView from './views/root';
+import MainView from './components/root';
 import LessLoader from 'less-hot';
 import Squelch from './core/squelch';
 import _ from 'lodash';
 
-// Make Squelch global
-window.Squelch = Squelch;
+import Fluxible from 'fluxible';
+import ChannelStore from './stores/channels';
 
 Squelch.config.read()
 .then((config) => {
@@ -21,11 +21,15 @@ Squelch.config.read()
 })
 .done();
 
-React.render(
-    <MainView />,
-    document.getElementById('squelch-root')
-);
-
 // Load our less styles
 var lessLoader = new LessLoader();
 document.querySelector('head').appendChild(lessLoader('./app/less/app.less'));
+
+let app = new Fluxible({
+    component: MainView,
+    stores: [
+        ChannelStore
+    ]
+});
+
+export default app;

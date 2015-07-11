@@ -3,7 +3,15 @@ import UserList from './userlist';
 import Chat from './chat';
 import Input from './input';
 
-export default class ChannelView extends React.Component {
+import {Join} from '../actions/channel';
+import ChannelStore from '../stores/channels';
+import {connectToStores} from 'fluxible-addons-react';
+
+@connectToStores([ChannelStore], (context) => {
+    return context.getStore(ChannelStore).getState();
+})
+
+class ChannelView extends React.Component {
     render() {
         return (
             <div className='channel-view'>
@@ -15,3 +23,5 @@ export default class ChannelView extends React.Component {
         );
     }
 };
+
+export default ChannelView;
