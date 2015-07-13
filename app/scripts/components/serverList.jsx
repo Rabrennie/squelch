@@ -1,42 +1,24 @@
 import React from 'react';
 import ServerView from './serverView'
 import _ from 'lodash';
+import ServerStore from '../stores/servers';
+import {connectToStores} from 'fluxible-addons-react';
 
+@connectToStores([ServerStore], (context) => context.getStore(ServerStore).getState())
 export default class ServerList extends React.Component {
 
     constructor() {
         super();
-        this.state = {
-            servers: Squelch.serverManager.getServers()
-        };
-        this.updateServers = this.updateServers.bind(this);
     }
 
     render() {
-        return (
-            <div className='server-list'>
-                {
-                    _.map(this.state.servers, (server) => {
-                        return <ServerView key={server.id} serverId={server.id}/>;
-                    })
-                }
-            </div>
-        );
-    }
-
-    updateServers(client) {
-        this.setState({
-            servers: Squelch.serverManager.getServers()
+        console.log("Rendering servers", _.size(this.props.servers));
+        var servers = _.map(this.props.servers, (server) => {
+            return <ServerView key={server.id} server={server}/>;
         });
-    }
-
-    componentDidMount() {
-        Squelch.serverManager.on('addServer', this.updateServers);
-        Squelch.serverManager.on('removeServer', this.updateServers);
-    }
-
-    componentWillUnmount() {
-        Squelch.serverManager.off('addServer', this.updateServers);
-        Squelch.serverManager.off('removeServer', this.updateServers);
+        console.log(servers);
+        return (
+            <div className='server-list'>{servers}</div>
+        );
     }
 };

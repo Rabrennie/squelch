@@ -1,4 +1,3 @@
-
 import {BaseStore} from 'fluxible/addons';
 
 class MessageStore extends BaseStore {

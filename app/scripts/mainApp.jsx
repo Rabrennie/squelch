@@ -1,17 +1,40 @@
 import React from 'react';
-import MainView from './components/root';
+import SquelchView from './components/squelchView';
 import LessLoader from 'less-hot';
 import Squelch from './core/squelch';
 import _ from 'lodash';
 
 import Fluxible from 'fluxible';
-import ChannelStore from './stores/channels';
+import FluxibleComponent from 'fluxible-addons-react/FluxibleComponent';
+
+import ServerStore from './stores/servers';
+
+import {AddServerAction} from './actions/server'
+
+// Load our less styles
+var lessLoader = new LessLoader();
+document.querySelector('head').appendChild(lessLoader('./app/less/app.less'));
+
+let app = new Fluxible({
+    stores: [
+        ServerStore
+    ]
+});
+
+let context = app.createContext();
+
+React.render(
+    <FluxibleComponent context={context.getComponentContext()}>
+        <SquelchView />
+    </FluxibleComponent>,
+    document.getElementById('squelch-root')
+);
 
 Squelch.config.read()
 .then((config) => {
     _.each(config.servers, (serverConfig) => {
         if (serverConfig.autoConnect) {
-            Squelch.serverManager.addServer(serverConfig);
+            context.executeAction(AddServerAction, {config: serverConfig});
         }
     });
 })
@@ -20,16 +43,5 @@ Squelch.config.read()
     require('remote').process.exit(1);
 })
 .done();
-
-// Load our less styles
-var lessLoader = new LessLoader();
-document.querySelector('head').appendChild(lessLoader('./app/less/app.less'));
-
-let app = new Fluxible({
-    component: MainView,
-    stores: [
-        ChannelStore
-    ]
-});
 
 export default app;

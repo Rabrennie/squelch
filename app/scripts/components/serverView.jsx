@@ -6,20 +6,14 @@ export default class ServerView extends React.Component {
 
     constructor(props) {
         super(props);
-        this.server = Squelch.serverManager.getServer(props.serverId);
-        this.state = {
-            name: this.server.name || this.server.opt.server,
-            channels: this.server.channels()
-        };
-        this.updateChannels = this.updateChannels.bind(this);
     }
 
     sortedChannels() {
-        return _.sortBy(this.state.channels);
+        return _.sortBy(this.props.server.channels());
     }
 
     render() {
-        var serverLabel = <span>{this.state.name}</span>;
+        var serverLabel = <span>{this.props.server.name || this.props.server.opt.server}</span>;
         return (
             <TreeView className='server' nodeLabel={serverLabel}>
             {
@@ -29,25 +23,5 @@ export default class ServerView extends React.Component {
             }
             </TreeView>
         );
-    }
-
-    updateChannels(e) {
-        if (e.nick === this.server.nick()) {
-            this.setState({
-                channels: this.server.channels()
-            });
-        }
-    }
-
-    componentDidMount() {
-        this.server.on('join', this.updateChannels);
-        this.server.on('part', this.updateChannels);
-        this.server.on('kick', this.updateChannels);
-    }
-
-    componentWillUnmount() {
-        this.server.off('join', this.updateChannels);
-        this.server.off('part', this.updateChannels);
-        this.server.off('kick', this.updateChannels);
     }
 };
