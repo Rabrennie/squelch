@@ -1,5 +1,5 @@
 import config from '../core/config';
-import {ServerEventAction} from '../actions/server.js'
+import {ServerEventAction} from '../actions/server.jsx'
 
 import Client from 'squelch-client';
 import _ from 'lodash';
