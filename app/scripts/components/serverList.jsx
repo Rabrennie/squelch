@@ -12,7 +12,7 @@ export default class ServerList extends React.Component {
     }
 
     render() {
-        console.log("Rendering servers", _.size(this.props.servers));
+        console.log('Rendering servers', _.size(this.props.servers));
         var servers = _.map(this.props.servers, (server) => {
             return <ServerView key={server.id} server={server}/>;
         });
