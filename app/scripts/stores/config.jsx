@@ -1,4 +1,3 @@
-import {ConfigLoadAction} from '../actions/config.jsx'
 import Squelch from '../core/squelch';
 
 import Client from 'squelch-client';
@@ -23,7 +22,7 @@ class ConfigStore extends BaseStore {
         Squelch.config.read()
             .then((config) => {
                 this.config = config;
-                // FIGURE OUT HOW TO DISPATCH CONFIGLOADACTION
+                this.emitChange();
             })
             .catch((err) => {
                 alert('Something went wrong while trying to load your config\n\n' + (err.message || err));
@@ -35,4 +34,4 @@ class ConfigStore extends BaseStore {
 
 ConfigStore.storeName = 'ConfigStore';
 
-export default ServerStore;
+export default ConfigStore;
