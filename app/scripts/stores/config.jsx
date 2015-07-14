@@ -1,37 +1,31 @@
-import Squelch from '../core/squelch';
-
-import Client from 'squelch-client';
 import _ from 'lodash';
 import {BaseStore} from 'fluxible/addons';
+import Client from 'squelch-client';
 
 class ConfigStore extends BaseStore {
     constructor(dispatcher) {
         super(dispatcher);
         this.config = {};
-
-        this.__loadConfig();
+        this.configDir = '.';
     }
 
     getState() {
         return {
-            config: this.config
+            config: this.config,
+            dir: this.configDir
         };
     }
 
-    __loadConfig() {
-        Squelch.config.read()
-            .then((config) => {
-                this.config = config;
-                this.emitChange();
-            })
-            .catch((err) => {
-                alert('Something went wrong while trying to load your config\n\n' + (err.message || err));
-                require('remote').process.exit(1);
-            })
-            .done();
+    _setConfig(payload) {
+        _.assign(this.config, payload.config || {});
+        this.configDir = payload.dir || this.configDir;
+        this.emitChange();
     }
 }
 
 ConfigStore.storeName = 'ConfigStore';
+ConfigStore.handlers = {
+    'SET_CONFIG': '_setConfig'
+};
 
 export default ConfigStore;

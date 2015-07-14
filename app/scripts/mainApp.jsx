@@ -1,7 +1,6 @@
 import React from 'react';
 import SquelchView from './components/squelchView';
 import LessLoader from 'less-hot';
-import Squelch from './core/squelch';
 import _ from 'lodash';
 
 import Fluxible from 'fluxible';

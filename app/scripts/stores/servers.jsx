@@ -1,5 +1,5 @@
-import config from '../core/config';
 import {ServerEventAction} from '../actions/server.jsx'
+import ConfigStore from '../stores/config'
 
 import Client from 'squelch-client';
 import _ from 'lodash';
@@ -78,8 +78,9 @@ class ServerStore extends BaseStore {
         certificateExpired
     */
     _addServer(payload) {
+        let config = this.dispatcher.getStore(ConfigStore).getState().config
         let serverConfig = _.assign({}, DEFAULT_SERVER_OPTIONS, payload.config, HARDCODED_SERVER_OPTIONS);
-        _.each(APP_SERVER_OPTIONS, (opt) => serverConfig[opt] = config.get(opt));
+        _.each(APP_SERVER_OPTIONS, (opt) => serverConfig[opt] = config[opt]);
         var id = _.uniqueId('server');
         var server = new Client(serverConfig);
         server.id = id;
