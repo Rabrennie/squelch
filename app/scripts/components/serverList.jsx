@@ -6,8 +6,7 @@ import ServerStore from '../stores/servers';
 
 import ServerListItem from './serverListItem';
 
-@connectToStores
-export default class ServerList extends React.Component {
+class ServerList extends React.Component {
     static getStores() { return [ServerStore]; }
     static getPropsFromStores() { return ServerStore.getState(); }
 
@@ -25,3 +24,6 @@ export default class ServerList extends React.Component {
         );
     }
 }
+
+ServerList = connectToStores(ServerList)
+export default ServerList;

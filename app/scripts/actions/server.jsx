@@ -31,4 +31,4 @@ class ServerActions {
     }
 }
 
-export default alt.createActions(ServerActions);
+export default alt.createActions((...args) => new ServerActions(...args));

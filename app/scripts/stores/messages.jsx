@@ -230,4 +230,4 @@ class MessageStore {
     }
 }
 
-export default alt.createStore(MessageStore, 'MessageStore');
+export default alt.createStore((...args) => new MessageStore(...args), 'MessageStore');

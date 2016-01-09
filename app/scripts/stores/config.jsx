@@ -21,4 +21,4 @@ class ConfigStore {
     }
 }
 
-export default alt.createStore(ConfigStore, 'ConfigStore');
+export default alt.createStore((...args) => new ConfigStore(...args), 'ConfigStore');

@@ -6,4 +6,4 @@ class RouteActions {
     }
 }
 
-export default alt.createActions(RouteActions);
+export default alt.createActions((...args) => new RouteActions(...args));

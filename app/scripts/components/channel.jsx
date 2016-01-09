@@ -8,8 +8,7 @@ import UserList from './userlist';
 import Chat from './chat';
 import Input from './input';
 
-@connectToStores
-export default class ChannelView extends React.Component {
+class ChannelView extends React.Component {
     static getStores() { return [MessageStore, ServerStore]; }
     static getPropsFromStores() {
         return {
@@ -67,3 +66,6 @@ ChannelView.propTypes = {
         channel: React.PropTypes.string.isRequired
     }).isRequired
 };
+
+ChannelView = connectToStores(ChannelView);
+export default ChannelView;

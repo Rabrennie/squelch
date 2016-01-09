@@ -10,4 +10,4 @@ class ChannelActions {
     }
 }
 
-export default alt.createActions(ChannelActions);
+export default alt.createActions((...args) => new ChannelActions(...args));

@@ -18,4 +18,4 @@ class RouteStore {
     }
 }
 
-export default alt.createStore(RouteStore, 'RouteStore');
+export default alt.createStore((...args) => RouteStore(...args), 'RouteStore');

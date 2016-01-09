@@ -76,4 +76,4 @@ class ConfigActions {
     }
 }
 
-export default alt.createActions(ConfigActions);
+export default alt.createActions((...args) => new ConfigActions(...args));

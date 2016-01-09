@@ -181,4 +181,4 @@ class ServerStore {
     }
 }
 
-export default alt.createStore(ServerStore);
+export default alt.createStore((...args) => ServerStore(...args));
