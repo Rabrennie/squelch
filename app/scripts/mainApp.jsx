@@ -16,6 +16,10 @@ import ServerView from './components/server';
 import ChannelView from './components/channel';
 import QueryView from './components/query';
 
+import Squelch from './core/squelchGlobal';
+
+window.Squelch = Squelch;
+
 State.trigger('config:load');
 
 const onUpdate = function() {
