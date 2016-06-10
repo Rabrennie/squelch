@@ -5,11 +5,29 @@ const State = new Freezer({
     config: {},
     configDir: '',
     route: { params: {} },
-    theme: {}
+    theme: {},
 
-    // TODO: add convenience methods for things like
-    // isCurrentlyInChannelView, isCurrentlyInQueryView, isCurrentlyInServerView
-    // getCurrentServer, getCurrentChannel, getCurrentQuery (not these but similar)
+    getCurrentServer() {
+        return this.servers[this.route.params.serverId];
+    },
+
+    getCurrentTarget() {
+        return this.route.params.channel || this.route.params.user;
+    },
+
+    isInServerView() {
+        return this.getCurrentServer() && !this.getCurrentTarget();
+    },
+
+    isInChannelView() {
+        return this.getCurrentServer() && this.route.params.channel;
+    },
+
+    isInQueryView() {
+        return this.getCurrentServer() && this.route.params.user;
+    }
+
+    // TODO: refactor with the above 5 convenience functions
 }, { live: false });
 
 export default State;

@@ -75,10 +75,13 @@ State.on('server:add', ({ config }) => {
         oldEmit.call(client, event, data);
     };
 
+    // TODO: Monkeypatch client to call events to show actions like msg locally
+
     client.id = id;
 
     servers.set(client.id, {
         id,
+        name: serverConfig.server || serverConfig.name,
         messages: [],
         userMessages: {},
         channels: {},
