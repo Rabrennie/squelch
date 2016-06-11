@@ -43,13 +43,4 @@ State.on('message:send', ({ serverId, to, msg }) => {
     if(checkCommand && Squelch.commands.handleInput(msg)) return;
 
     server.getClient().msg(to, msg);
-    State.trigger('message:route', {
-        type: 'msg',
-        server,
-        data: {
-            msg,
-            to,
-            from: server.getClient().nick()
-        }
-    });
 });

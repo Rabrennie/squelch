@@ -66,7 +66,7 @@ export default class CommandRegistry {
 
         const result = command.fn(args, context);
 
-        if(!result) return;
+        if(typeof result !== 'string') return;
 
         // If there's a result, send as msg (or info msg on servers)
         if(context.target) {

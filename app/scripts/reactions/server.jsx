@@ -13,7 +13,8 @@ const HARDCODED_SERVER_OPTIONS = {
     messageDelay: 0,
     stripColors: false,
     stripStyles: false,
-    autoConnect: false
+    autoConnect: false,
+    triggerEventsForOwnMessages: true
 };
 
 // Default options for servers
@@ -65,17 +66,14 @@ State.on('server:add', ({ config }) => {
 
     const client = new Client(serverConfig);
     // Monkeypatch .emit to catch all events
-    const oldEmit = client.emit;
-    client.emit = function(event, data) {
+    client.emit = _.wrap(client.emit, (orig, event, data) => {
         State.trigger('message:receive', {
             type: event,
             server: State.get().servers[client.id],
             data
         });
-        oldEmit.call(client, event, data);
-    };
-
-    // TODO: Monkeypatch client to call events to show actions like msg locally
+        orig.call(client, event, data);
+    });
 
     client.id = id;
 
