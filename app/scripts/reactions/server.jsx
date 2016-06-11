@@ -2,6 +2,7 @@ import _ from 'lodash';
 import Client from 'squelch-client';
 
 import State from '../stores/state';
+import ClientWrapper from '../core/clientWrapper';
 
 // Options for squelch-client that are always the same
 // ...they just gotta be that way
@@ -65,6 +66,7 @@ State.on('server:add', ({ config }) => {
     _.each(APP_SERVER_OPTIONS, (opt) => serverConfig[opt] = rootConfig[opt]);
 
     const client = new Client(serverConfig);
+    client.use(ClientWrapper());
     // Monkeypatch .emit to catch all events
     client.emit = _.wrap(client.emit, (orig, event, data) => {
         State.trigger('message:receive', {

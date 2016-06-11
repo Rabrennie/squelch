@@ -56,7 +56,8 @@
     "require-dir": "^0.3.0",
     "squelch-base-theme": "0.0.6",
     "squelch-client": "^0.13.1",
-    "squelch-nick-hash": "^1.0.1"
+    "squelch-nick-hash": "^1.0.1",
+    "string-args": "^1.0.2"
   },
   "ava": {
     "require": [
