@@ -27,7 +27,7 @@
     "ava": "^0.12.0",
     "babel-eslint": "^5.0.0-beta6",
     "electron-packager": "^5.2.1",
-    "electron-prebuilt": "^0.37.2",
+    "electron-prebuilt": "^1.2.2",
     "electron-rebuild": "^1.0.2",
     "eslint": "~2.2.0",
     "eslint-config-kellyirc": "^3.1.0",
@@ -35,7 +35,6 @@
     "rimraf": "^2.4.1"
   },
   "dependencies": {
-    "babel-preset-es2015-node5": "^1.1.1",
     "babel-preset-react": "^6.3.13",
     "babel-register": "^6.3.13",
     "bluebird": "^3.3.4",

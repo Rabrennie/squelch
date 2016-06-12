@@ -1,8 +1,8 @@
-import test from 'ava';
-import Freezer from 'freezer-js';
-import _ from 'lodash';
+const test = require('ava');
+const Freezer = require('freezer-js');
+const _ = require('lodash');
 
-import MessageRouter from '../app/scripts/core/messageRouter';
+const MessageRouter = require('../app/scripts/core/messageRouter');
 
 // Generate a fake message object
 const fakeMsg = (from, to, msg) => {
