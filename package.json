@@ -10,7 +10,7 @@
     "clean": "rimraf release/",
     "lint": "eslint --ext .js,.jsx app main.js menu.js",
     "prebuild": "npm run clean && npm run lint",
-    "build": "electron-packager . --asar --all --out release --prune --ignore=\"/test($|/)|/tools($|/)|/release($|/)\"",
+    "build": "electron-packager . --platform=darwin --arch=x64 release --prune --ignore='^/test$'",
     "pretest": "npm run lint",
     "test": "ava"
   },
@@ -26,7 +26,7 @@
   "devDependencies": {
     "ava": "^0.12.0",
     "babel-eslint": "^5.0.0-beta6",
-    "electron-packager": "^5.2.1",
+    "electron-packager": "^7.0.3",
     "electron-prebuilt": "^1.2.2",
     "electron-rebuild": "^1.0.2",
     "eslint": "~2.2.0",
