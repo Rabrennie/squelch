@@ -52,14 +52,14 @@ const CoreCommandPackage = (Squelch) => {
             this.subscriptions.add(Squelch.commands.register('notice', notice));
             this.subscriptions.add(Squelch.commands.register('raw', raw));
             this.subscriptions.add(Squelch.commands.register('amsg', amsg));
-			this.subscriptions.add(Squelch.commands.register('ame', ame));
-			this.subscriptions.add(Squelch.commands.register('disconnect', disconnect));
-			this.subscriptions.add(Squelch.commands.register('quit', disconnect));
-			this.subscriptions.add(Squelch.commands.register('kick', kick));
-			this.subscriptions.add(Squelch.commands.register('kickban', kickban));
-			this.subscriptions.add(Squelch.commands.register('ns', ns));
-			this.subscriptions.add(Squelch.commands.register('cs', cs));
-			this.subscriptions.add(Squelch.commands.register('ban', ban));
+            this.subscriptions.add(Squelch.commands.register('ame', ame));
+            this.subscriptions.add(Squelch.commands.register('disconnect', disconnect));
+            this.subscriptions.add(Squelch.commands.register('quit', disconnect));
+            this.subscriptions.add(Squelch.commands.register('kick', kick));
+            this.subscriptions.add(Squelch.commands.register('kickban', kickban));
+            this.subscriptions.add(Squelch.commands.register('ns', ns));
+            this.subscriptions.add(Squelch.commands.register('cs', cs));
+            this.subscriptions.add(Squelch.commands.register('ban', ban));
             this.subscriptions.add(Squelch.commands.register('unban', unban));
         },
 

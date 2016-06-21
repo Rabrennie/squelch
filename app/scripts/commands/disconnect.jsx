@@ -1,11 +1,9 @@
-const parse = require('string-args');
+module.exports =  (args, { client }) => {
 
-module.exports =  (args, { target, client }) => {
+    if(!client.isConnected()) {
+        return client.info('You are not connected to this server');
+    }
 
-	if(!client.isConnected()) {
-		return client.info(`You are not connected to this server`);
-	}
-
-	client.disconnect(args)
+    client.disconnect(args);
 
 };

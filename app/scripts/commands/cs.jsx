@@ -1,5 +1,5 @@
 module.exports =  (args, { client }) => {
 
-	client.msg('ChanServ', args)
+    client.msg('ChanServ', args);
 
 };

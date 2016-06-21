@@ -2,12 +2,12 @@ const parse = require('string-args');
 
 module.exports =  (args, { target, client, commandName }) => {
 
-	args = parse('nick', args);
+    args = parse('nick', args);
 
-	if(!args.nick) {
-		return client.info(`Usage: /${commandName} [nick]`);
-	}
+    if(!args.nick) {
+        return client.info(`Usage: /${commandName} [nick]`);
+    }
 
-	client.unban(target, args.nick)
+    client.unban(target, args.nick);
 
 };
