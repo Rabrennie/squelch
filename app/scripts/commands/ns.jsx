@@ -1,5 +1,5 @@
 module.exports =  (args, { client }) => {
 
-	client.msg('NickServe', args)
+	client.msg('NickServ', args)
 
 };
